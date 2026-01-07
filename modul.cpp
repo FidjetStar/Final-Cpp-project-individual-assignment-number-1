@@ -43,8 +43,8 @@ std::string CardToString(int card) {
 }
 
 int CompareCards(int c1, int c2) {
-    if (c1 > c2) return 1;
-    if (c2 > c1) return 2;
+    if (c1 > c2) {return 1;}
+    if (c2 > c1) {return 2;}
     return 0;
 }
 
@@ -53,23 +53,23 @@ void AddLog(std::vector<std::string>& log, int round, int c1, int c2, int winner
         "Раунд " + std::to_string(round) + ": " +
         CardToString(c1) + " vs " + CardToString(c2);
 
-    if (winner == 1)
-        entry += " → Победил Игрок 1";
-    else if (winner == 2)
-        entry += " → Победил Игрок 2";
+    if (winner == 1) {
+        entry += " → Победил Игрок 1"; }
+    else if (winner == 2) {
+        entry += " → Победил Игрок 2"; }
     else
-        entry += " → Ничья";
+        {entry += " → Ничья"; }
 
     log.push_back(entry);
 }
 
 void PrintGameWinner(const Player& p1, const Player& p2) {
     if (p1.cards.size() > p2.cards.size())
-        std::cout << "ПОБЕДИЛ ИГРОК 1\n";
+        {std::cout << "ПОБЕДИЛ ИГРОК 1\n";}
     else if (p2.cards.size() > p1.cards.size())
-        std::cout << "ПОБЕДИЛ ИГРОК 2\n";
+        {std::cout << "ПОБЕДИЛ ИГРОК 2\n";}
     else
-        std::cout << "НИЧЬЯ\n";
+        {std::cout << "НИЧЬЯ\n"; }
 }
 
 void PlayGame(Player& p1, Player& p2) {
@@ -214,4 +214,5 @@ void ShowRules() {
     std::cout << "Нажмите Enter для возврата в меню";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
+
 
