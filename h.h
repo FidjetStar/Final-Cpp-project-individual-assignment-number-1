@@ -1,27 +1,33 @@
-#ifndef H_H
-#define H_H
-
-#include <vector>
-#include <string>
-
-struct Player {
-    std::vector<int> cards;
-};
-
-
-void CreateDeck(std::vector<int>& deck);
-void ShuffleDeck(std::vector<int>& deck);
-void DealCards(const std::vector<int>& deck, Player& p1, Player& p2);
-
-
-void PlayGame(Player& p1, Player& p2);
-
-
-std::string CardToString(int card);
-
-
-void ShowMenu();
-void ShowRules();
-int GetMenuChoice();
-
+#include <iostream>
+#include "h.h"
+#ifdef _WIN64
+#include <windows.h>
 #endif
+
+int main() {
+    using namespace std;
+    #ifdef _WIN64
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    #endif
+    vector<int> deck;
+    Player player1, player2;
+    while (true) {
+        ShowMenu();
+        int choice = GetMenuChoice();
+        if (choice == 1) {
+            CreateDeck(deck);
+            ShuffleDeck(deck);
+            DealCards(deck, player1, player2);
+            PlayGame(player1, player2);
+        }
+        else if (choice == 2) {
+            ShowRules();
+        }
+        else {
+            cout << "Программа завершена.\n";
+            break;
+        }
+    }
+    return 0;
+}
